@@ -2,5 +2,5 @@ package org.mycompany
 
 class PersonController {
 
-    def index() { }
+    def scaffold = Person
 }
