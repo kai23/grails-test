@@ -50,6 +50,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.24'
+        compile "net.sf.ehcache:ehcache-core:2.4.6"
     }
 
     plugins {
@@ -73,5 +74,6 @@ grails.project.dependency.resolution = {
         compile ":spring-security-core:2.0-RC2"
         compile ":mongodb:1.3.0"
         compile ":cxf:1.1.1"
+        compile ":lesscss-resources:1.3.3"
     }
 }
