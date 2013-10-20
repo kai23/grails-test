@@ -13,9 +13,11 @@
                         <h3>Person <small class="lead">Address List</small></h3>
                     </header>
                     <div class="span3">
+                    <sec:ifAllGranted roles="ROLE_ADMIN">
                         <g:link class="btn btn-block btn-link" action="create">
                             Create New Person
                         </g:link>
+                    </sec:ifAllGranted>
                         <div class="well">
                             <ul class="nav nav-list">
                                 <li class="nav-header">People</li>
@@ -49,7 +51,9 @@
                                         <th>City</th>
                                         <th>Street</th>
                                         <th>Zip Code</th>
-                                        <th>Options</th>
+                                        <sec:ifAllGranted roles="ROLE_ADMIN">
+                                            <th>Options</th>
+                                        </sec:ifAllGranted>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,20 +63,24 @@
                                         <td>${ address.city }</td>
                                         <td>${ address.streetAddress }</td>
                                         <td>${ address.zipCode }</td>
-                                        <td><g:link class="btn btn-small btn-inverse" controller="address"
-                                                    action="edit" id="${address.id}">
-                                                <i class="icon-edit icon-white"></i>
-                                            </g:link>
-                                        </td>
+                                        <sec:ifAllGranted roles="ROLE_ADMIN">
+                                            <td><g:link class="btn btn-small btn-inverse" controller="address"
+                                                        action="edit" id="${address.id}">
+                                                    <i class="icon-edit icon-white"></i>
+                                                </g:link>
+                                            </td>
                                     </tr>
                                 </g:each>
                                 </tbody>
                             </table>
-                            <div class="btn-group">
-                                <g:link class="btn btn-primary" action="edit" id="${person.id}">
-                                    <i class="icon-edit icon-white"></i>Edit
-                                </g:link>
-                            </div>
+                            <sec:ifAllGranted roles="ROLE_ADMIN">
+                                <div class="btn-group">
+                                    <g:link class="btn btn-primary" action="edit" id="${person.id}">
+                                        <i class="icon-edit icon-white"></i>Edit
+                                    </g:link>
+                                </div>
+                            </sec:ifAllGranted>
+                            </sec:ifAllGranted>
                         </div>
                     </g:each>
                     </div>

@@ -63,7 +63,7 @@ grails {
         }
     }
 }
- 
+
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
@@ -113,3 +113,37 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.mycompany.SecUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.mycompany.SecUserSecRole'
+grails.plugin.springsecurity.authority.className = 'org.mycompany.SecRole'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll']
+]
+
+grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.interceptUrlMap = [
+        '/person/index':    ['ROLE_USER, ROLE_ADMIN, IS_AUTHENTICATED_FULLY'],
+        '/person/**':       ['ROLE_ADMIN'],
+        '/address/**':      ['ROLE_ADMIN'],
+        '/js/**':           ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/css/**':          ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/images/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/*':               ['IS_AUTHENTICATED_FULLY'],
+        '/login/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/logout/**':       ['IS_AUTHENTICATED_ANONYMOUSLY']
+
+]
+
+grails.plugin.springsecurity.password.algorithm='SHA-512'      //pw encryption algorithm
+grails.plugin.springsecurity.portMapper.httpPort = "8080"      //port map for http
+grails.plugin.springsecurity.portMapper.httpsPort = "8443"     //port map for https
+grails.plugin.springsecurity.rejectIfNoRule = true             //force authentication if no rule exists
