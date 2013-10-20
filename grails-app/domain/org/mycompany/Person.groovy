@@ -12,4 +12,6 @@ class Person {
         firstName(blank: false)
         lastName(blank: false)
     }
+
+    String toString(){ return "${firstName} ${lastName}"}
 }

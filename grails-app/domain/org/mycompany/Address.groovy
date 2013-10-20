@@ -22,4 +22,5 @@ class Address {
             val?.after(obj.moveInDate)
         })*/
     }
+     String toString(){ return "${streetAddress} ${city}, ${state}, ${zipCode}"}
 }
